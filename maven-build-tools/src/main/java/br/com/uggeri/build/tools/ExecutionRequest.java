@@ -7,6 +7,7 @@
 package br.com.uggeri.build.tools;
 
 import br.com.uggeri.build.tools.log.Log;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -36,4 +37,8 @@ public interface ExecutionRequest {
    public String getOption(String prop, String defaultValue);
 
    public boolean containsOption(String prop);
+   
+   public Map<String, String> getEnvironmentVariables();
+   
+   public void setEnvironmentVariables(Map<String, String> environmentVariables);
 }

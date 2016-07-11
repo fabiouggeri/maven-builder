@@ -25,8 +25,6 @@ public abstract class AbstractCompilationRequest extends AbstractExecutionReques
 
    private boolean force = false;
 
-   private Map<String, String> environmentVariables = null;
-
    /**
     * @return the defines
     */
@@ -82,13 +80,5 @@ public abstract class AbstractCompilationRequest extends AbstractExecutionReques
    @Override
    public boolean isForce() {
       return force;
-   }
-
-   public Map<String, String> getEnvironmentVariables() {
-      return environmentVariables;
-   }
-
-   public void setEnvironmentVariables(Map<String, String> environmentVariables) {
-      this.environmentVariables = environmentVariables;
    }
 }

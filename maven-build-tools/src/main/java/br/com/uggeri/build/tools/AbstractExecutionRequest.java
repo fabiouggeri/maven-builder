@@ -6,6 +6,7 @@
 package br.com.uggeri.build.tools;
 
 import br.com.uggeri.build.tools.log.Log;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -21,6 +22,8 @@ public abstract class AbstractExecutionRequest implements ExecutionRequest {
    private Properties properties = null;
 
    private Log log = null;
+
+   private Map<String, String> environmentVariables = null;
 
    /**
     * @return the outputDir
@@ -98,4 +101,13 @@ public abstract class AbstractExecutionRequest implements ExecutionRequest {
       this.properties = properties;
    }
 
+   @Override
+   public Map<String, String> getEnvironmentVariables() {
+      return environmentVariables;
+   }
+
+   @Override
+   public void setEnvironmentVariables(Map<String, String> environmentVariables) {
+      this.environmentVariables = environmentVariables;
+   }
 }

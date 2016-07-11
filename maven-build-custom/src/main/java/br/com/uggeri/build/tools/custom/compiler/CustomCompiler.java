@@ -59,7 +59,7 @@ public class CustomCompiler extends AbstractExternalCompiler {
       Commandline commandLine; 
       CustomCommandLineBuilder cmdBuilder = new CustomCommandLineBuilder();
       createVariables(cmdBuilder, request, outFile);
-      commandLine = BuildUtil.createCommandLine(cmdBuilder.buildCommandLine(getToolConfig().getCommandLine(), request));
+      commandLine = BuildUtil.createCommandLine(cmdBuilder.buildCommandLine(getToolConfig().getCommandLine(), this, request));
       commandLine.setWorkingDirectory(request.getSource().getParentFile());
       return commandLine;
    }
@@ -71,7 +71,7 @@ public class CustomCompiler extends AbstractExternalCompiler {
       CustomCommandLineBuilder cmdBuilder = new CustomCommandLineBuilder();
       createBatchVariables(cmdBuilder, request, outFiles);
       sourceDir = request.getSources().get(0).getParentFile(); // Assume o diretorio do primeiro fonte como diretorio de origem
-      commandLine = BuildUtil.createCommandLine(cmdBuilder.buildCommandLine(getToolConfig().getCommandLine(), request));
+      commandLine = BuildUtil.createCommandLine(cmdBuilder.buildCommandLine(getToolConfig().getCommandLine(), this, request));
       commandLine.setWorkingDirectory(sourceDir);
       return commandLine;
    }

@@ -39,7 +39,7 @@ public class CustomPacker extends AbstractExternalPacker {
       Commandline commandLine;
       CustomCommandLineBuilder cmdBuilder = new CustomCommandLineBuilder();
       createVariables(cmdBuilder, request, outFile);
-      commandLine = BuildUtil.createCommandLine(cmdBuilder.buildCommandLine(getToolConfig().getCommandLine(), request));
+      commandLine = BuildUtil.createCommandLine(cmdBuilder.buildCommandLine(getToolConfig().getCommandLine(), this, request));
       commandLine.setWorkingDirectory(FileUtils.getPath(outFile.getAbsolutePath()));
       return commandLine;
    }
