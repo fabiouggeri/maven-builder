@@ -135,11 +135,17 @@ public abstract class AbstractPackageMojo extends AbstractSicrediMojo {
             request.setSources(inputFiles);
             request.setEnvironmentVariables(getBuildContext().getEnvironmentVariables());
             result = packer.execute(request);
-            if (!result.isSuccessful() || getLog().isDebugEnabled() || verbose) {
+            if (!result.isSuccessful() || getLog().isDebugEnabled() || verbose || hasWarnings(result)) {
                if (!result.getOutput().isEmpty()) {
                   getLog().info("------------------------------------------------------------------------");
                   for (String msg : result.getOutput()) {
-                     getLog().info("| " + msg);
+                     if (hasError(msg)) {
+                        getLog().error("| " + msg);
+                     } else if (hasWarning(msg)) {
+                        getLog().warn("| " + msg);
+                     } else {
+                        getLog().info("| " + msg);
+                     }
                   }
                   getLog().info("------------------------------------------------------------------------");
                }

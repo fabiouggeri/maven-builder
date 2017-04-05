@@ -236,7 +236,13 @@ public abstract class AbstractCompileMojo extends AbstractSicrediMojo implements
       if (!result.getOutput().isEmpty()) {
          getLog().info("------------------------------------------------------------------------");
          for (String msg : result.getOutput()) {
-            getLog().info("| " + msg);
+            if (hasError(msg)) {
+               getLog().error("| " + msg);
+            } else if (hasWarning(msg)) {
+               getLog().warn("| " + msg);
+            } else {
+               getLog().info("| " + msg);
+            }
          }
          getLog().info("------------------------------------------------------------------------");
       }
@@ -264,7 +270,7 @@ public abstract class AbstractCompileMojo extends AbstractSicrediMojo implements
          if (getLog().isDebugEnabled()) {
             getLog().debug("Objetos Gerados: " + result.getOutputFiles());
             showCompilerOutput(result);
-         } else if (verbose) {
+         } else if (verbose || hasWarnings(result)) {
             showCompilerOutput(result);
          }
       }

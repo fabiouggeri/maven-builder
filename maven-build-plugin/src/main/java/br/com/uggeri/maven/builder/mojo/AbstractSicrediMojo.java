@@ -28,13 +28,11 @@ import org.apache.maven.repository.RepositorySystem;
  */
 public abstract class AbstractSicrediMojo extends AbstractMojo implements Executor {
 
-   public static final String SVC_SYSTEM_CODE_PROPERTY = "svcSystemCode";
-
-   public static final String SVC_ACRONYM_PROPERTY = "svcAcronym";
-
-   public static final String SVC_ARTIFACT_NAME_PROPERTY = "svcName";
-
    private static final String BUILD_CONTEXT = "_BUILD_CONTEXT_";
+   
+   private final static Pattern WARNING_PATTERN = Pattern.compile("[^a-zA-Z]warn[^a-zA-Z]|[^a-zA-Z]warning[^a-zA-Z]", Pattern.CASE_INSENSITIVE);
+
+   private final static Pattern ERROR_PATTERN = Pattern.compile("[^a-zA-Z]error([^a-zA-Z\\.]|(\\s*:))", Pattern.CASE_INSENSITIVE);
 
    /**
     * Mapear os executaveis para as ferramentas
@@ -528,4 +526,22 @@ public abstract class AbstractSicrediMojo extends AbstractMojo implements Execut
    public String getCallForPrepare() {
       return callForPrepare;
    }
+   
+   protected boolean hasError(final String str) {
+      return ERROR_PATTERN.matcher(str).find();
+   }
+   
+   protected boolean hasWarning(final String str) {
+      return WARNING_PATTERN.matcher(str).find();
+   }
+   
+   protected boolean hasWarnings(ExecutionResult result) {
+      for (String out : result.getOutput()) {
+         if (WARNING_PATTERN.matcher(out).find()) {
+            return true;
+         }
+      }
+      return false;
+   }
+
 }
