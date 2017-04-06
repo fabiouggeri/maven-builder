@@ -22,7 +22,7 @@ import org.codehaus.plexus.util.cli.StreamConsumer;
  * @author fabio_uggeri
  */
 @Mojo(name = "test", defaultPhase = LifecyclePhase.TEST, requiresProject = true, requiresDependencyResolution = ResolutionScope.TEST)
-public class TestMojo extends AbstractSicrediMojo {
+public class TestMojo extends AbstractNativeMojo {
 
    @Override
    public void execute() throws MojoExecutionException, MojoFailureException {

@@ -12,7 +12,7 @@ import br.com.uggeri.build.tools.packer.PackagingRequest;
 import br.com.uggeri.build.tools.packer.PackagingRequestImpl;
 import br.com.uggeri.build.tools.packer.PackagingResult;
 import br.com.uggeri.build.tools.packer.Packer;
-import br.com.uggeri.maven.builder.mojo.AbstractSicrediMojo;
+import br.com.uggeri.maven.builder.mojo.AbstractNativeMojo;
 import br.com.uggeri.maven.builder.mojo.ArtifactUtil;
 import java.io.File;
 import java.io.FileWriter;
@@ -27,7 +27,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.artifact.ProjectArtifactMetadata;
 import org.codehaus.plexus.util.IOUtil;
 
-public abstract class AbstractPackageMojo extends AbstractSicrediMojo {
+public abstract class AbstractPackageMojo extends AbstractNativeMojo {
 
    @Override
    public void execute() throws MojoExecutionException, MojoFailureException {
@@ -70,7 +70,7 @@ public abstract class AbstractPackageMojo extends AbstractSicrediMojo {
       FileWriter fw = null;
       try {
          ProjectArtifactMetadata metadata;
-         File tempFile = File.createTempFile("sicPom", ".pom");
+         File tempFile = File.createTempFile("NativeBuildPom", ".pom");
          tempFile.deleteOnExit();
 
          Model model = new Model();
@@ -79,7 +79,7 @@ public abstract class AbstractPackageMojo extends AbstractSicrediMojo {
          model.setArtifactId(artifact.getArtifactId());
          model.setVersion(artifact.getVersion());
          model.setPackaging(artifact.getType());
-         model.setDescription("POM criado pelo plugin sicredi-native-build:package");
+         model.setDescription("POM criado pelo plugin maven-native-builder:package");
          fw = new FileWriter(tempFile);
          tempFile.deleteOnExit();
          new MavenXpp3Writer().write(fw, model);

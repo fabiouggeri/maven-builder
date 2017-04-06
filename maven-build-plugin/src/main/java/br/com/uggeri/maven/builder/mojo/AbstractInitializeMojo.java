@@ -44,7 +44,7 @@ import org.codehaus.plexus.util.cli.Commandline;
 
 /**
  */
-public abstract class AbstractInitializeMojo extends AbstractSicrediMojo {
+public abstract class AbstractInitializeMojo extends AbstractNativeMojo {
 
    private final static String START_PARSING_MARK = "-=-=-=ENVIRONMENT VARS-=-=-=";
 

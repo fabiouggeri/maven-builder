@@ -5,10 +5,12 @@
 package br.com.uggeri.maven.builder.mojo;
 
 import br.com.uggeri.build.tools.BuildUtil;
+import br.com.uggeri.build.tools.ExecutionResult;
 import br.com.uggeri.maven.builder.MavenLogWrapper;
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.Executor;
+import java.util.regex.Pattern;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.resolver.ArtifactResolver;
@@ -26,7 +28,7 @@ import org.apache.maven.repository.RepositorySystem;
  *
  * @author ADMIN
  */
-public abstract class AbstractSicrediMojo extends AbstractMojo implements Executor {
+public abstract class AbstractNativeMojo extends AbstractMojo implements Executor {
 
    private static final String BUILD_CONTEXT = "_BUILD_CONTEXT_";
    

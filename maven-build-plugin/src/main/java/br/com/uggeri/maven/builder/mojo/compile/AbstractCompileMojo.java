@@ -12,7 +12,7 @@ import br.com.uggeri.maven.builder.MavenLogWrapper;
 import br.com.uggeri.build.tools.PackagingType;
 import br.com.uggeri.build.tools.compiler.CompilationRequest;
 import br.com.uggeri.build.tools.compiler.CompilationResult;
-import br.com.uggeri.maven.builder.mojo.AbstractSicrediMojo;
+import br.com.uggeri.maven.builder.mojo.AbstractNativeMojo;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import org.codehaus.plexus.util.FileUtils;
  *
  * @author fabio_uggeri
  */
-public abstract class AbstractCompileMojo extends AbstractSicrediMojo implements Executor {
+public abstract class AbstractCompileMojo extends AbstractNativeMojo implements Executor {
 
    /**
     * Defines condicionais. Declarados somente se uma condicao for satisfeita.
