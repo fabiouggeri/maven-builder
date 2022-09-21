@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
-   <groupId>br.com.uggeri.maven.builder</groupId>
+   <groupId>org.uggeri.maven.builder</groupId>
    <artifactId>maven-builder</artifactId>
-   <version>2.0-SNAPSHOT</version>
+   <version>2.4.0.0</version>
    <packaging>pom</packaging>
-   <name>Maven Builder</name>
-   <description>Tools for applications building with different compilers</description>
+   <name>Native Builder</name>
+   <description>Plugin to build apps with native compilers</description>
 
    <developers>
       <developer>
@@ -18,22 +19,26 @@
          </roles>
       </developer>
    </developers>
-
+   
+   <url>https://gitlab.com/fabiouggeri/maven-builder.git</url>
+   
+   <licenses>
+      <license>
+         <name>Apache License, Version 2.0</name>
+         <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+         <distribution>repo</distribution>
+      </license>
+   </licenses>
+   
    <properties>
       <maven-version>3.3.3</maven-version>
    </properties>
 
    <modules>
-      <module>maven-build-tools</module>
-      <module>maven-build-harbour</module>
-      <module>maven-build-bcc</module>
-      <module>maven-build-mslink</module>
-      <module>maven-build-mslib</module>
-      <module>maven-build-msc</module>
-      <module>maven-build-plugin</module>
-      <module>maven-build-tlib</module>
-      <module>maven-build-ilink</module>
-      <module>maven-build-custom</module>
+      <module>builder-tools</module>
+      <module>builder-maven-plugin</module>
+      <module>builder-custom</module>
+      <module>builder-helper-maven-plugin</module>
    </modules>
 
    <dependencyManagement>
@@ -85,13 +90,26 @@
             <version>1.1</version>
             <scope>compile</scope>
          </dependency>
-
          <dependency>
             <groupId>org.ini4j</groupId>
             <artifactId>ini4j</artifactId>
             <version>0.5.2</version>
          </dependency>
-
+         <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-archiver</artifactId>
+            <version>3.1.1</version>
+         </dependency>
+         <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-archiver</artifactId>
+            <version>3.4</version>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.20</version>
+         </dependency>
       </dependencies>
 
    </dependencyManagement>
@@ -102,8 +120,8 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.3</version>
             <configuration>
-               <source>1.7</source>
-               <target>1.7</target>
+               <source>1.8</source>
+               <target>1.8</target>
             </configuration>
          </plugin>
       </plugins>
